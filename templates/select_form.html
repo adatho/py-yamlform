@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Formular auswählen{% endblock %}
+{% block content %}
+<h2>Formular auswählen</h2>
+<ul>
+  {% for key, title in forms %}
+  <li><a href="{{ url_for('show_form', form_key=key) }}">{{ title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

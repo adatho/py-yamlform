@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<h2>{{ title }}</h2>
+<form method="post">
+    {% for v in variables %}
+    <fieldset>
+        <legend>{{ v.name }}</legend>
+        <p>{{ v.description or "" }}</p>
+        {% if v.type == "boolean" %}
+        <label><input type="checkbox" name="{{ v.name }}" {% if v.default %}checked{% endif %}> {{ v.description
+            }}</label>
+        {% elif v.type == "number" %}
+        <input type="number" name="{{ v.name }}" value="{{ v.default }}" {% if v.minimum is defined
+            %}min="{{ v.minimum }}" {% endif %} {% if v.maximum is defined %}max="{{ v.maximum }}" {% endif %}>
+        {% elif v.type == "string" %}
+        <input type="text" name="{{ v.name }}" value="{{ v.default }}">
+        {% elif v.type == "enum" %}
+        <select name="{{ v.name }}">
+            {% for o in v.options %}
+            <option value="{{ o }}" {% if o==v.default %}selected{% endif %}>{{ o }}</option>
+            {% endfor %}
+        </select>
+        {% elif v.type == "map" %}
+        {% for key, val in v.default.items() %}
+        <label>{{ key }}: <input type="text" name="{{ v.name }}[{{ key }}]" value="{{ val }}"></label>
+        {% endfor %}
+        {% elif v.type == "range" %}
+        <label>Start: <input type="number" name="{{ v.name }}[start]" value="{{ v.default.start }}" min="{{ v.from }}"
+                max="{{ v.to }}"></label>
+        <label>End: <input type="number" name="{{ v.name }}[end]" value="{{ v.default.end }}" min="{{ v.from }}"
+                max="{{ v.to }}"></label>
+        {% elif v.type == "text" %}
+        <textarea name="{{ v.name }}">{{ v.default }}</textarea>
+        {% endif %}
+    </fieldset>
+    {% endfor %}
+    <button type="submit">Absenden</button>
+</form>
+{% endblock %}

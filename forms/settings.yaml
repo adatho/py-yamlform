@@ -1,0 +1,12 @@
+title: "Allgemeine Einstellungen"
+variables:
+  - name: debugMode
+    type: boolean
+    default: false
+    description: "Debug-Logging an/aus"
+  - name: maxRetries
+    type: number
+    default: 3
+    minimum: 0
+    maximum: 10
+    description: "Maximale Wiederholungen"

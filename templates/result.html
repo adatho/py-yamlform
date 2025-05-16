@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Ergebnis{% endblock %}
+{% block content %}
+<h2>Ergebnis</h2>
+<pre id="yaml-output">{{ out_yaml }}</pre>
+<button onclick="copyToClipboard()">Kopieren</button>
+<form method="post" action="{{ url_for('download_yaml', form_key=form_key) }}">
+    <input type="hidden" name="yaml_data" value="{{ out_yaml }}">
+    <button type="submit">Herunterladen</button>
+</form>
+<script>
+    function copyToClipboard() {
+        const text = document.getElementById("yaml-output").textContent;
+        navigator.clipboard.writeText(text).then(() => alert("In die Zwischenablage kopiert!"));
+    }
+</script>
+{% endblock %}

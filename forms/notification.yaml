@@ -1,0 +1,11 @@
+title: "Notification-Settings"
+variables:
+  - name: emailEnabled
+    type: boolean
+    default: true
+    description: "E-Mail-Benachrichtigung"
+  - name: level
+    type: enum
+    options: ["low", "medium", "high"]
+    default: "medium"
+    description: "Dringlichkeit"

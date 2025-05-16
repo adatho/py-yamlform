@@ -1,0 +1,53 @@
+forms:
+  settings:
+    title: "Allgemeine Einstellungen"
+    variables:
+      - name: debugMode
+        type: boolean
+        default: false
+        description: "Debug-Logging an/aus"
+      - name: maxRetries
+        type: number
+        default: 3
+        minimum: 0
+        maximum: 10
+        description: "Maximale Wiederholungen"
+      - name: apiEndpoint
+        type: string
+        default: "https://api.example.com"
+        description: "Basis-URL der API"
+      - name: logLevel
+        type: enum
+        options: ["debug","info","warning","error"]
+        default: "info"
+        description: "Log-Level"
+      - name: credentials
+        type: map
+        default:
+          user: ""
+          apiKey: ""
+        description: "Key/Value-Paare für Zugangsdaten"
+      - name: portRange
+        type: range
+        from: 3000
+        to: 4000
+        default:
+          start: 3000
+          end: 3500
+        description: "Port-Start/Ende"
+      - name: notes
+        type: text
+        default: ""
+        description: "Freies Textfeld"
+  notification:
+    title: "Notification-Settings"
+    variables:
+      - name: emailEnabled
+        type: boolean
+        default: true
+        description: "E-Mail-Benachrichtigung"
+      - name: level
+        type: enum
+        options: ["low","medium","high"]
+        default: "medium"
+        description: "Dringlichkeit"

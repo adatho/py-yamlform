@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}YAML-Formular{% endblock %}</title>
+</head>
+
+<body>
+    <header>
+        <h1><a href="{{ url_for('select_form') }}">YAML-Formular Generator</a></h1>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 YAML-Formular Generator</p>
+    </footer>
+</body>
+
+</html>
